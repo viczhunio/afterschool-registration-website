@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Confirmation - K-2 Clubs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+    }
+
+    .header {
+      font-family: 'Castoro', serif;
+      position: relative;
+      text-align: center;
+      color: white;
+    }
+
+    .header img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+
+    .header h1 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2.5em;
+      color: #9b438e;
+      background: rgba(195, 105, 189, 0.4);
+      border-radius: 8px;
+      padding: 10px 20px;
+      margin: 0;
+      font-family:'Castoro', serif;
+    }
+
+    .confirmation-info {
+      font-family: 'Inter', sans-serif;
+      text-align: center;
+      margin: 30px auto;
+      max-width: 800px;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .confirmation-info h2 {
+      font-family: 'Castoro', serif;
+      color: #9b438e;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .parent-info {
+      background: #f8f4f8;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      border-left: 5px solid #da95d9;
+    }
+
+    .parent-info p {
+      margin: 5px 0;
+      font-size: 1.1em;
+    }
+
+    .parent-info strong {
+      color: #9b438e;
+    }
+
+    /* Table styling */
+    table {
+      width: 100%;
+      margin: 30px auto;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 15px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      background: #b460b2;
+      color: white;
+      font-size: 1.2em;
+      text-align: center;
+      font-family: 'Castoro', serif;
+    }
+
+    .day-column {
+      background: #da95d9;
+      color: white;
+      font-weight: bold;
+      font-size: 1.1em;
+      font-family:'Castoro', serif;
+    }
+
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+
+    .club-cell {
+      text-align: left;
+      padding: 12px;
+    }
+
+    .club-name {
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .status-enrolled {
+      background: #4CAF50;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 15px;
+      font-size: 0.9em;
+      display: inline-block;
+      margin-top: 5px;
+      font-family: 'Castoro', serif;
+    }
+
+    .status-waitlisted {
+      background: #FF9800;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 15px;
+      font-size: 0.9em;
+      display: inline-block;
+      margin-top: 5px;
+      font-family: 'Castoro', serif;
+    }
+
+    .no-club {
+      color: #999;
+      font-style: italic;
+    }
+
+    .total-cost {
+      background: #9b438e;
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 30px 0;
+      text-align: center;
+      font-size: 1.3em;
+      font-weight: bold;
+    }
+
+    .back-link, .print-btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 25px;
+      background: #9b438e;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      font-size: 1em;
+      font-family: 'Inter', serif;
+    }
+
+    .back-link:hover, .print-btn:hover {
+      background: #da95d9;
+    }
+
+    .action-buttons {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .success-message {
+      font-family: 'Inter', sans-serif;
+      background: #d4edda;
+      color: #155724;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #c3e6cb;
+      margin: 20px 0;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    @media print {
+      .action-buttons, .back-link, .print-btn {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header Section -->
+  <div class="header">
+    <img src="https://thumb.photo-ac.com/92/925318b56176cb6b8118eba687f19121_t.jpeg">
+    <h1>Registration Confirmation</h1>
+  </div>
+
+  <div class="confirmation-info">
+    <h2>Thank You for Registering!</h2>
+    
+    <div class="success-message">
+      Registration submitted successfully! You will receive a confirmation email shortly.
+    </div>
+
+    <!-- Parent and Child Information -->
+    <div class="parent-info">
+      <p><strong>Parent Name:</strong> <span id="parentDisplay">-</span></p>
+      <p><strong>Child Name:</strong> <span id="childDisplay">-</span></p>
+      <p><strong>Email:</strong> <span id="emailDisplay">-</span></p>
+      <p><strong>Registration Date:</strong> <span id="dateDisplay">-</span></p>
+    </div>
+
+    <!-- Club Schedule Table -->
+    <h3 style="color: #9b438e; margin-top: 40px;">Your Weekly Club Schedule</h3>
+    
+    <table>
+      <tr>
+        <th>Day</th>
+        <th>First Period (2:30-3:30 PM)</th>
+        <th>Second Period (3:30-4:30 PM)</th>
+      </tr>
+      <tr>
+        <td class="day-column">Monday</td>
+        <td class="club-cell" id="monday-first">
+          <div class="no-club">No club selected</div>
+        </td>
+        <td class="club-cell" id="monday-second">
+          <div class="no-club">No club selected</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="day-column">Tuesday</td>
+        <td class="club-cell" id="tuesday-first">
+          <div class="no-club">No club selected</div>
+        </td>
+        <td class="club-cell" id="tuesday-second">
+          <div class="no-club">No club selected</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="day-column">Wednesday</td>
+        <td class="club-cell" id="wednesday-first">
+          <div class="no-club">No club selected</div>
+        </td>
+        <td class="club-cell" id="wednesday-second">
+          <div class="no-club">No club selected</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="day-column">Thursday</td>
+        <td class="club-cell" id="thursday-first">
+          <div class="no-club">No club selected</div>
+        </td>
+        <td class="club-cell" id="thursday-second">
+          <div class="no-club">No club selected</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="day-column">Friday</td>
+        <td class="club-cell" id="friday-first">
+          <div class="no-club">No club selected</div>
+        </td>
+        <td class="club-cell" id="friday-second">
+          <div class="no-club">No club selected</div>
+        </td>
+      </tr>
+    </table>
+
+    <!-- Total Cost Display -->
+    <div class="total-cost" id="totalCost">
+      Total Cost: $0
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-buttons">
+      <button class="print-btn" onclick="window.print()">Print Confirmation</button>
+      <a href="k-2clubs.html" class="back-link">← Register Another Child</a>
+      <a href="index.html" class="back-link">← Back to Home</a>
+    </div>
+
+  </div>
+
+<script>
+  // Club mapping for each day and period
+  const clubMappings = {
+    // Monday First Period
+    'Homework Help': { day: 'monday', period: 'first', cost: 0 },
+    'Origami Fun': { day: 'monday', period: 'first', cost: 0 },
+    'Build Away': { day: 'monday', period: 'first', cost: 0 },
+    'Center Stage': { day: 'monday', period: 'first', cost: 0 },
+    'Mixed Martial Arts': { day: 'monday', period: 'first', cost: 0 },
+    
+    // Monday Second Period
+    'Baseball': { day: 'monday', period: 'second', cost: 150 },
+    'Looming': { day: 'monday', period: 'second', cost: 0 },
+    'Design 101': { day: 'monday', period: 'second', cost: 0 },
+    'Quiz In': { day: 'monday', period: 'second', cost: 0 },
+    'Salt Art': { day: 'monday', period: 'second', cost: 0 },
+    'Punch Needling': { day: 'monday', period: 'second', cost: 0 },
+    
+    // Tuesday First Period
+    'Chess': { day: 'tuesday', period: 'first', cost: 150 },
+    'Shrinky Dinks': { day: 'tuesday', period: 'first', cost: 0 },
+    'Sing It': { day: 'tuesday', period: 'first', cost: 0 },
+    'Fuse Beads': { day: 'tuesday', period: 'first', cost: 0, doublesPeriod: true },
+    
+    // Tuesday Second Period
+    'Basketall': { day: 'tuesday', period: 'second', cost: 150 },
+    'Paper Pals': { day: 'tuesday', period: 'second', cost: 0 },
+    'Games Galore': { day: 'tuesday', period: 'second', cost: 0 },
+    'Crafts': { day: 'tuesday', period: 'second', cost: 0 },
+    
+    // Wednesday First Period
+    'Twist N\' Ties': { day: 'wednesday', period: 'first', cost: 0 },
+    'Paint by Numbers': { day: 'wednesday', period: 'first', cost: 0, doublesPeriod: true },
+    'Junior Scientist': { day: 'wednesday', period: 'first', cost: 150 },
+    
+    // Wednesday Second Period
+    'Soccer': { day: 'wednesday', period: 'second', cost: 150 },
+    'Mixed Media': { day: 'wednesday', period: 'second', cost: 0 },
+    'Minute to Win It': { day: 'wednesday', period: 'second', cost: 0 },
+    '3D Design': { day: 'wednesday', period: 'second', cost: 150 },
+    
+    // Thursday First Period
+    'Mind Activities': { day: 'thursday', period: 'first', cost: 0 },
+    'Sand Art': { day: 'thursday', period: 'first', cost: 0 },
+    'Science through Art': { day: 'thursday', period: 'first', cost: 150 },
+    
+    // Thursday Second Period
+    'Pickleball': { day: 'thursday', period: 'second', cost: 150 },
+    'Cartooning': { day: 'thursday', period: 'second', cost: 0 },
+    'Journaling': { day: 'thursday', period: 'second', cost: 0 },
+    'Zen Station': { day: 'thursday', period: 'second', cost: 0 },
+    'Baker\'s & Shakers': { day: 'thursday', period: 'second', cost: 200 },
+    
+    // Friday First Period
+    'Peaceful Palette': { day: 'friday', period: 'first', cost: 0 },
+    'Board Game Creations': { day: 'friday', period: 'first', cost: 0, doublesPeriod: true },
+    'Water Magic Fuse Beads': { day: 'friday', period: 'first', cost: 0 },
+    'Gymnastics': { day: 'friday', period: 'first', cost: 150 },
+    
+    // Friday Second Period
+    'Gaga': { day: 'friday', period: 'second', cost: 0 },
+    'Junior Engineer': { day: 'friday', period: 'second', cost: 200 },
+    'Match it up': { day: 'friday', period: 'second', cost: 0 },
+    'Makersspace': { day: 'friday', period: 'second', cost: 0 },
+    'Squish Labs': { day: 'friday', period: 'second', cost: 0 }
+  };
+
+  // Function to randomly assign enrollment status
+  function getRandomStatus() {
+    return Math.random() < 0.8 ? 'enrolled' : 'waitlisted'; // 80% chance of enrollment
+  }
+
+  // Function to display club with status
+  function displayClub(clubName, cellId) {
+    const cell = document.getElementById(cellId);
+    const status = getRandomStatus();
+    const statusClass = status === 'enrolled' ? 'status-enrolled' : 'status-waitlisted';
+    const statusText = status === 'enrolled' ? 'Enrolled' : 'Waitlisted';
+    
+    cell.innerHTML = `
+      <div class="club-name">${clubName}</div>
+      <div class="${statusClass}">${statusText}</div>
+    `;
+    
+    return { name: clubName, status: status };
+  }
+
+  // Get URL parameters
+  function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    const results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  }
+
+  // Initialize page
+  function initializePage() {
+    // Display parent information
+    document.getElementById('parentDisplay').textContent = getUrlParameter('parentName') || 'Not provided';
+    document.getElementById('childDisplay').textContent = getUrlParameter('childName') || 'Not provided';
+    document.getElementById('emailDisplay').textContent = getUrlParameter('email') || 'Not provided';
+    document.getElementById('dateDisplay').textContent = new Date().toLocaleDateString();
+
+    // Get selected clubs
+    const clubsParam = getUrlParameter('clubs');
+    const selectedClubs = clubsParam ? clubsParam.split(', ').filter(club => club.trim() !== '') : [];
+    
+    let totalCost = 0;
+    const enrolledClubs = [];
+
+    // Process each selected club
+    selectedClubs.forEach(clubName => {
+      const clubInfo = clubMappings[clubName];
+      if (clubInfo) {
+        const cellId = `${clubInfo.day}-${clubInfo.period}`;
+        const clubStatus = displayClub(clubName, cellId);
+        
+        if (clubStatus.status === 'enrolled') {
+          totalCost += clubInfo.cost;
+          enrolledClubs.push(clubName);
+        }
+        
+        // Handle double period clubs
+        if (clubInfo.doublesPeriod) {
+          const secondPeriodId = `${clubInfo.day}-second`;
+          document.getElementById(secondPeriodId).innerHTML = `
+            <div class="club-name">${clubName} (Continued)</div>
+            <div class="status-enrolled">Part of Double Period</div>
+          `;
+        }
+      }
+    });
+
+    // Display total cost
+    document.getElementById('totalCost').textContent = `Total Cost: $${totalCost}`;
+
+    // If no clubs were selected, show a message
+    if (selectedClubs.length === 0) {
+      document.querySelector('.confirmation-info').innerHTML += `
+        <div style="text-align: center; color: #999; font-style: italic; margin: 20px 0;">
+          No clubs were selected during registration.
+        </div>
+      `;
+    }
+  }
+
+  // Initialize when page loads
+  document.addEventListener('DOMContentLoaded', initializePage);
+</script>
+
+</body>
+</html>
