@@ -6,7 +6,7 @@ A web application designed to help guardians easily register their children for 
 ## 🛠️ Tech Stack ##
 
 Frontend: HTML5, CSS, JavaScript      
-Database: Firebase   
+Database: Apps Script, Google Sheets 
 
 ## ✨ Features ##  
 Online Registration Form: Parents can register students for available afterschool clubs.       
