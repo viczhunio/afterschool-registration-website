@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Grades K-2 Clubs </title>
+  <link href="https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 2.5em;
+      color: #9b438e;
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(195, 105, 189, 0.4);
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-family: 'Castoro', serif;
+    }
+
+    h2 {
+      font-family: 'Castoro', serif;
+      font-size: 1.4em;
+      color: rgb(230, 220, 225); 
+      font-weight: bold; 
+      text-align: center; 
+      margin-top: 10px;
+      margin-bottom: 10px; 
+    }
+
+    h3 {
+      font-family: 'Castoro', serif;
+      font-size: 2em;
+      color: #9b438e;
+      text-align: center;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .header {
+      position: relative;
+      text-align: center;
+      color: white;
+    }
+
+    .header img {
+      width: 100%;
+      height: 250px; 
+      object-fit: cover; 
+      opacity: 0.8; 
+    }
+
+    #tableContainer {
+      display: flex;
+      justify-content: center;
+      overflow-x: auto;
+      padding: 20px 0;
+    }
+
+    table {
+      width: 80%;
+      margin: 30px auto; 
+      border-collapse: separate;
+      border-spacing: 0;
+      text-align: center;
+      background: #fff;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px 8px;
+      border: 1px solid #ddd;
+      text-align: left;
+      font-size: 0.9em;
+    }
+
+    th {
+      background: #b460b2;
+      color: white;
+      text-align: center;
+    }
+
+    tr:nth-child(even) {
+      background: #f2f2f2;
+    }
+
+    .round-radio {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #9b438e;
+      cursor: pointer;
+      vertical-align: middle;
+      position: relative;  
+      margin-top: -2px;
+      flex-shrink: 0;
+    }
+
+    .round-radio:checked {
+      background-color: #da95d9;
+      border-color: #9b438e;
+    }
+
+    .day-column {
+      background: #da95d9;
+      color: white;
+      font-weight: bold;
+      font-size: 1.1em;
+      text-align: center;
+      vertical-align: middle;
+      min-width: 100px;
+    }
+
+    td:first-child {
+      font-size: 1.3em;
+      font-family: 'Castoro', serif;
+      text-align: center;
+    }
+
+    td:nth-child(2),
+    td:nth-child(3) {
+      font-size: 1.1em;
+      margin-bottom: 10px;
+      font-family: 'Castoro', serif;
+    }
+
+    .club-option {
+      display: flex;
+      align-items: flex-start;
+      margin: 8px 0;
+      padding: 5px;
+      border-radius: 4px;
+      gap: 8px;
+    }
+
+    .club-option.full {
+      background-color: #ffebee;
+      opacity: 0.9;
+    }
+
+    .club-option.near-full {
+      background-color: #fff9e6;
+    }
+
+    .club-info {
+      flex-grow: 1;
+      min-width: 0;
+    }
+
+    .club-name {
+      font-weight: 500;
+      word-wrap: break-word;
+    }
+
+    .club-details {
+      font-size: 0.9em;
+      color: #666;
+      word-wrap: break-word;
+    }
+
+    .club-cost {
+      color: #9b438e;
+      font-weight: bold;
+    }
+
+    .club-capacity {
+      color: #e91e63;
+      font-size: 0.85em;
+    }
+
+    .submit-btn {
+      display: block;
+      margin: 30px auto;
+      padding: 12px 25px;
+      background: #9b438e;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .submit-btn:hover {
+      background: #da95d9;
+    }
+
+    .form-container {
+      text-align: center;
+      margin: 60px auto 40px;
+      max-width: 600px;
+      padding: 30px;
+      background: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .form-container input[type="text"],
+    .form-container input[type="email"] {
+      width: 80%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 2px solid #ddd;
+      border-radius: 8px;
+      font-size: 1em;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .form-container input:focus {
+      border-color: #9b438e;
+      outline: none;
+    }
+
+    .backup-selection {
+      background: #fff3cd;
+      border: 2px solid #ffc107;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+      display: none;
+      animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .backup-selection.show {
+      display: block;
+    }
+
+    .backup-selection h4 {
+      color: #856404;
+      margin-top: 0;
+      font-family: 'Castoro', serif;
+    }
+
+    .backup-option {
+      margin: 15px 0;
+      padding: 15px;
+      background: white;
+      border-radius: 5px;
+      border-left: 4px solid #ffc107;
+    }
+
+    .backup-option label {
+      display: block;
+      margin: 10px 0;
+    }
+
+    .backup-option select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 2px solid #ddd;
+      border-radius: 5px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin: 30px auto;
+      padding: 12px 25px;
+      background: #9b438e;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      border: none;
+      cursor: pointer;
+    }
+
+    .back-link:hover {
+      background: #da95d9;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header"> 
+    <img src="https://thumb.photo-ac.com/92/925318b56176cb6b8118eba687f19121_t.jpeg">
+    <h1>K-2 Club Registration</h1>
+  </div>
+
+  <div id="loadingMessage" style="text-align:center;padding:20px;color:#9b438e;font-size:1.1em;"></div>
+  <div id="tableContainer">
+    <table id="clubTable">
+      <thead>
+        <tr>
+          <th><h2>Day</h2></th>
+          <th><h2>First Period (2:30–3:30 PM)</h2></th>
+          <th><h2>Second Period (3:30–4:30 PM)</h2></th>
+        </tr>
+      </thead>
+      <tbody id="clubTableBody"></tbody>
+    </table>
+  </div>
+
+  <div class="form-container">
+    <h3>Confirm Your Selection</h3>
+    <p id="selected-clubs"><strong>Selected Clubs:</strong> None</p>
+    
+    <div id="backupSelection" class="backup-selection">
+      <h4>⚠️ Some clubs may be full - Please select backup choices</h4>
+      <p style="font-size: 0.9em; color: #666;">Select your 2nd and 3rd choice for any day where your first choice might be full.</p>
+      <div id="backupOptions"></div>
+    </div>
+    
+    <form id="finalForm">
+      <input type="text" id="parentName" placeholder="Parent/Guardian's Frst/Last Name" required>
+      <input type="text" id="childName" placeholder="Child's First/Last Name" required>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="text" id="phone" placeholder="Phone Number (optional)">
+      <button type="submit" class="submit-btn">Submit Registration</button>
+    </form>
+  </div>
+
+  <div style="text-align: center;">
+    <a href="index.html" class="back-link">← Back to Home</a>
+  </div>
+
+<script>
+  // ─── CONFIG ───────────────────────────────────────────────────────────────
+  // Replace with your Google Apps Script deployment URL
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzWmRt80tmT9NUNRCkKzt4ZEJf8T_mZASVbZfOFKRbaEeCFo6UQ4W5Gor4_68MlrPj_Og/exec';
+  let clubData = {};
+
+  // ─── LOAD CLUBS FROM GOOGLE SHEETS ────────────────────────────────────────
+  async function loadClubs() {
+    try {
+      document.getElementById('loadingMessage').textContent = 'Loading clubs...';
+      const response = await fetch(`${SCRIPT_URL}?action=getClubs&gradeLevel=k-2`);
+      const data = await response.json();
+      console.log('Fetched K-2 club data:', data);
+
+      clubData = {};
+      data.clubs.forEach(club => {
+        // Normalize day key: trim whitespace + lowercase to prevent duplicate rows
+        const day = club.day.trim().toLowerCase();
+        if (!clubData[day]) {
+          clubData[day] = { first: [], second: [] };
+        }
+        if (club.period === 'first-second') {
+          clubData[day].first.push(club);
+        } else {
+          clubData[day][club.period].push(club);
+        }
+      });
+
+      document.getElementById('loadingMessage').textContent = '';
+      generateClubTable();
+    } catch (error) {
+      document.getElementById('loadingMessage').innerHTML =
+        '<p style="color:red;">Error loading clubs. Please refresh the page or try again later.</p>' +
+        '<p style="font-size:0.9em;">' + error.message + '</p>';
+    }
+  }
+
+  // ─── BUILD TABLE ──────────────────────────────────────────────────────────
+  function generateClubTable() {
+    const tbody = document.getElementById('clubTableBody');
+    tbody.innerHTML = '';
+
+    Object.keys(clubData).forEach(day => {
+      const row = document.createElement('tr');
+
+      const dayCell = document.createElement('td');
+      dayCell.className = 'day-column';
+      dayCell.textContent = day.charAt(0).toUpperCase() + day.slice(1);
+      row.appendChild(dayCell);
+
+      const firstCell = document.createElement('td');
+      clubData[day].first.forEach(club => {
+        firstCell.appendChild(createClubOption(club, `${day}-first`));
+      });
+      row.appendChild(firstCell);
+
+      const secondCell = document.createElement('td');
+      clubData[day].second.forEach(club => {
+        secondCell.appendChild(createClubOption(club, `${day}-second`));
+      });
+      row.appendChild(secondCell);
+
+      tbody.appendChild(row);
+    });
+  }
+
+  function createClubOption(club, radioName) {
+    const isFull = club.currentEnrolled >= club.maxCapacity;
+    const isNearFull = club.currentEnrolled >= club.maxCapacity * 0.9;
+    const spotsLeft = club.maxCapacity - club.currentEnrolled;
+
+    const clubDiv = document.createElement('div');
+    clubDiv.className = `club-option ${isFull ? 'full' : ''} ${isNearFull && !isFull ? 'near-full' : ''}`;
+
+    const input = document.createElement('input');
+    input.type = 'radio';
+    input.name = radioName;
+    input.value = club.name;
+    input.className = 'round-radio';
+
+    const infoDiv = document.createElement('div');
+    infoDiv.className = 'club-info';
+
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'club-name';
+    nameSpan.textContent = club.name;
+
+    const detailsDiv = document.createElement('div');
+    detailsDiv.className = 'club-details';
+
+    let detailsText = club.cost > 0 ? `Cost: $${club.cost} • ` : '';
+    if (isFull) {
+      detailsText += 'FULL ❌ (join waitlist)';
+    } else if (isNearFull) {
+      detailsText += `Only ${spotsLeft} spot${spotsLeft !== 1 ? 's' : ''} left! ⚠️`;
+    } else {
+      detailsText += `${spotsLeft} spots available`;
+    }
+    detailsDiv.textContent = detailsText;
+
+    infoDiv.appendChild(nameSpan);
+    infoDiv.appendChild(detailsDiv);
+    clubDiv.appendChild(input);
+    clubDiv.appendChild(infoDiv);
+    return clubDiv;
+  }
+
+  // ─── SELECTION TRACKER ────────────────────────────────────────────────────
+  function updateSelectedClubs() {
+    const selected = [];
+    const selectedByDay = {};
+
+    document.querySelectorAll('input[type=radio]:checked').forEach(r => {
+      selected.push(r.value);
+      selectedByDay[r.name] = r.value;
+    });
+
+    document.getElementById('selected-clubs').innerHTML =
+      '<strong>Selected Clubs:</strong> ' + (selected.length ? selected.join(', ') : 'None');
+
+    checkForPotentialWaitlists(selectedByDay);
+  }
+
+  function checkForPotentialWaitlists(selectedByDay) {
+    const backupSection = document.getElementById('backupSelection');
+    const backupOptions = document.getElementById('backupOptions');
+    let needsBackup = false;
+    backupOptions.innerHTML = '';
+
+    Object.keys(selectedByDay).forEach(dayPeriod => {
+      const selectedClub = selectedByDay[dayPeriod];
+      const [day, period] = dayPeriod.split('-');
+      const clubInfo = clubData[day]?.[period]?.find(c => c.name === selectedClub);
+
+      if (clubInfo && clubInfo.currentEnrolled >= clubInfo.maxCapacity) {
+        needsBackup = true;
+        const backupDiv = document.createElement('div');
+        backupDiv.className = 'backup-option';
+        backupDiv.innerHTML = `
+          <strong>${day.charAt(0).toUpperCase() + day.slice(1)} – ${period === 'first' ? 'First' : 'Second'} Period</strong>
+          <p style="font-size:0.9em;margin:5px 0;color:#666;">First choice: <strong>${selectedClub}</strong> (Full)</p>
+          <label><strong>2nd Choice:</strong>
+            <select name="backup-${dayPeriod}-second">
+              <option value="">Select a backup...</option>
+              ${getBackupOptions(day, period, selectedClub)}
+            </select>
+          </label>
+          <label><strong>3rd Choice:</strong>
+            <select name="backup-${dayPeriod}-third">
+              <option value="">Select a backup...</option>
+              ${getBackupOptions(day, period, selectedClub)}
+            </select>
+          </label>`;
+        backupOptions.appendChild(backupDiv);
+      }
+    });
+
+    backupSection.classList.toggle('show', needsBackup);
+  }
+
+  function getBackupOptions(day, period, excludeClub) {
+    if (!clubData[day]?.[period]) return '';
+    return clubData[day][period]
+      .filter(c => c.name !== excludeClub && c.currentEnrolled < c.maxCapacity)
+      .map(c => `<option value="${c.name}">${c.name} (${c.maxCapacity - c.currentEnrolled} spots)</option>`)
+      .join('');
+  }
+
+  // ─── FORM SUBMIT ──────────────────────────────────────────────────────────
+  document.addEventListener('DOMContentLoaded', function () {
+    loadClubs();
+
+    document.addEventListener('change', e => {
+      if (e.target.type === 'radio') updateSelectedClubs();
+    });
+
+    document.getElementById('finalForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const parentName = document.getElementById('parentName').value;
+      const childName  = document.getElementById('childName').value;
+      const email      = document.getElementById('email').value;
+      const phone      = document.getElementById('phone').value || '';
+
+      const selections = [];
+      document.querySelectorAll('input[type=radio]:checked').forEach(r => {
+        const [day, period] = r.name.split('-');
+        const backup2nd = document.querySelector(`select[name="backup-${r.name}-second"]`)?.value || '';
+        const backup3rd = document.querySelector(`select[name="backup-${r.name}-third"]`)?.value || '';
+        selections.push({ club: r.value, day, period, backup2nd, backup3rd });
+      });
+
+      const registrationData = { parentName, childName, gradeLevel: 'k-2', email, phone, selections };
+
+      try {
+        const submitBtn = document.querySelector('.submit-btn');
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Submitting...';
+
+        const response = await fetch(SCRIPT_URL, {
+          method: 'POST',
+          body: JSON.stringify(registrationData)
+        });
+        const result = await response.json();
+
+        if (result.success) {
+          const confirmParams = new URLSearchParams({
+            parentName,
+            childName,
+            email,
+            registrations: JSON.stringify(result.registrations)
+          });
+          window.location.href = 'confirmationk-2.html?' + confirmParams.toString();
+        } else {
+          alert('Registration failed: ' + result.error);
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Submit Registration';
+        }
+      } catch (error) {
+        alert('Error submitting registration: ' + error.message);
+        document.querySelector('.submit-btn').disabled = false;
+        document.querySelector('.submit-btn').textContent = 'Submit Registration';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Registration Confirmation - 3-5 Clubs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Castoro:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+    }
+
+    .header {
+      font-family: 'Castoro', serif;
+      position: relative;
+      text-align: center;
+      color: white;
+    }
+
+    .header img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      opacity: 0.8;
+    }
+
+    .header h1 {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 2.5em;
+      color: #9b438e;
+      background: rgba(195, 105, 189, 0.4);
+      border-radius: 8px;
+      padding: 10px 20px;
+      margin: 0;
+      font-family:'Castoro', serif;
+    }
+
+    .confirmation-info {
+      font-family: 'Inter', sans-serif;
+      text-align: center;
+      margin: 30px auto;
+      max-width: 800px;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .confirmation-info h2 {
+      font-family: 'Castoro', serif;
+      color: #9b438e;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .parent-info {
+      background: #f8f4f8;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 20px 0;
+      border-left: 5px solid #da95d9;
+    }
+
+    .parent-info p {
+      margin: 5px 0;
+      font-size: 1.1em;
+    }
+
+    .parent-info strong {
+      color: #9b438e;
+    }
+
+    table {
+      width: 100%;
+      margin: 30px auto;
+      border-collapse: collapse;
+      background: #fff;
+      box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 15px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+
+    th {
+      background: #b460b2;
+      color: white;
+      font-size: 1.2em;
+      text-align: center;
+      font-family: 'Castoro', serif;
+    }
+
+    .day-column {
+      background: #da95d9;
+      color: white;
+      font-weight: bold;
+      font-size: 1.1em;
+      font-family:'Castoro', serif;
+    }
+
+    tr:nth-child(even) {
+      background: #f9f9f9;
+    }
+
+    .club-cell {
+      text-align: left;
+      padding: 12px;
+    }
+
+    .club-name {
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .status-waitlisted {
+      background: #FF9800;
+      color: white;
+      padding: 4px 8px;
+      border-radius: 15px;
+      font-size: 0.85em;
+      display: inline-block;
+      margin-top: 5px;
+      font-family: 'Castoro', serif;
+    }
+
+    .waitlist-note {
+      color: #FF9800;
+      font-size: 0.9em;
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    .no-club {
+      color: #999;
+      font-style: italic;
+    }
+
+    .total-cost {
+      background: #9b438e;
+      color: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin: 30px 0;
+      text-align: center;
+      font-size: 1.3em;
+      font-weight: bold;
+    }
+
+    .back-link, .print-btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 25px;
+      background: #9b438e;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      font-size: 1em;
+      font-family: 'Inter', serif;
+    }
+
+    .back-link:hover, .print-btn:hover {
+      background: #da95d9;
+    }
+
+    .action-buttons {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .success-message {
+      font-family: 'Inter', sans-serif;
+      background: #d4edda;
+      color: #155724;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #c3e6cb;
+      margin: 20px 0;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .waitlist-warning {
+      background: #fff3cd;
+      color: #856404;
+      padding: 15px;
+      border-radius: 8px;
+      border: 1px solid #ffc107;
+      margin: 20px 0;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    @media print {
+      .action-buttons, .back-link, .print-btn {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <img src="https://thumb.photo-ac.com/92/925318b56176cb6b8118eba687f19121_t.jpeg">
+    <h1>Registration Confirmation</h1>
+  </div>
+
+  <div class="confirmation-info">
+    <h2>Thank You for Registering!</h2>
+    
+    <div class="success-message">
+      Registration submitted successfully! You will receive a confirmation email shortly.
+    </div>
+
+    <div id="waitlistWarning" class="waitlist-warning" style="display: none;">
+      ⚠️ Some of your selected clubs are full. You have been added to the waitlist and will be notified if a spot becomes available.
+    </div>
+
+    <div class="parent-info">
+      <p><strong>Parent Name:</strong> <span id="parentDisplay">-</span></p>
+      <p><strong>Child Name:</strong> <span id="childDisplay">-</span></p>
+      <p><strong>Child's Grade:</strong> <span id="gradeDisplay">-</span></p>
+      <p><strong>Email:</strong> <span id="emailDisplay">-</span></p>
+      <p><strong>Registration Date:</strong> <span id="dateDisplay">-</span></p>
+    </div>
+
+    <h3 style="color: #9b438e; margin-top: 40px;">Your Weekly Club Schedule</h3>
+    
+    <table>
+      <tr>
+        <th>Day</th>
+        <th>First Period (2:30-3:30 PM)</th>
+        <th>Second Period (3:30-4:30 PM)</th>
+      </tr>
+      <tr>
+        <td class="day-column">Monday</td>
+        <td class="club-cell" id="monday-first">
+          <div class="no-club">No club selected</div>
+        </td>
+        <td class="club-cell" id="monday-second">
+          <div class="no-club">No club selected</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="day-column">Tuesday</td>
+        <td class="club-cell" id="tuesday-first">
+          <div class="no-club">No club selected</div>
+        </td>
+        <td class="club-cell" id="tuesday-second">
+          <div class="no-club">No club selected</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="day-column">Wednesday</td>
+        <td class="club-cell" id="wednesday-first">
+          <div class="no-club">No club selected</div>
+        </td>
+        <td class="club-cell" id="wednesday-second">
+          <div class="no-club">No club selected</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="day-column">Thursday</td>
+        <td class="club-cell" id="thursday-first">
+          <div class="no-club">No club selected</div>
+        </td>
+        <td class="club-cell" id="thursday-second">
+          <div class="no-club">No club selected</div>
+        </td>
+      </tr>
+      <tr>
+        <td class="day-column">Friday</td>
+        <td class="club-cell" id="friday-first">
+          <div class="no-club">No club selected</div>
+        </td>
+        <td class="club-cell" id="friday-second">
+          <div class="no-club">No club selected</div>
+        </td>
+      </tr>
+    </table>
+
+    <div class="total-cost" id="totalCost">
+      Total Cost: $0
+    </div>
+
+    <div class="action-buttons">
+      <button class="print-btn" onclick="window.print()">Print Confirmation</button>
+      <a href="3-5clubs.html" class="back-link">← Register Another Child</a>
+      <a href="index.html" class="back-link">← Back to Home</a>
+    </div>
+
+  </div>
+
+<script>
+  // Get URL parameters
+  function getUrlParameter(name) {
+    name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    const regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+    const results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  }
+
+  // Initialize page
+  function initializePage() {
+    // Display parent information
+    document.getElementById('parentDisplay').textContent = getUrlParameter('parentName') || 'Not provided';
+    document.getElementById('childDisplay').textContent = getUrlParameter('childName') || 'Not provided';
+    document.getElementById('gradeDisplay').textContent = getUrlParameter('childGrade') || 'Not provided';
+    document.getElementById('emailDisplay').textContent = getUrlParameter('email') || 'Not provided';
+    document.getElementById('dateDisplay').textContent = new Date().toLocaleDateString();
+    
+    // Get registration results
+    const registrationsParam = getUrlParameter('registrations');
+    const registrations = registrationsParam ? JSON.parse(registrationsParam) : [];
+    
+    let totalCost = 0;
+    let hasWaitlist = false;
+    
+    // Display each registration
+    registrations.forEach(reg => {
+      const cellId = `${reg.day}-${reg.period}`;
+      const cell = document.getElementById(cellId);
+      
+      if (!cell) return;
+      
+      const isWaitlisted = reg.status === 'Waitlisted' || reg.status === 'waitlisted';
+      if (isWaitlisted) {
+        hasWaitlist = true;
+        cell.innerHTML = `
+          <div class="club-name">${reg.club}</div>
+          <div class="status-waitlisted">⏳ Waitlisted</div>
+          <div class="waitlist-note">Club is full. You'll be notified if a spot opens.</div>`;
+      } else {
+        cell.innerHTML = `
+          <div class="club-name">${reg.club}</div>
+          <div class="status-enrolled">✅ Enrolled</div>`;
+        totalCost += (reg.cost || 0);
+      }
+    });
+    
+    // Show waitlist warning if needed
+    if (hasWaitlist) {
+      document.getElementById('waitlistWarning').style.display = 'block';
+    }
+    
+    // Display total cost (you'd calculate this from club data if needed)
+    document.getElementById('totalCost').textContent = `Total Cost: $${totalCost}`;
+    
+    // If no clubs were selected, show a message
+    if (registrations.length === 0) {
+      document.querySelector('.confirmation-info').innerHTML += `
+        <div style="text-align: center; color: #999; font-style: italic; margin: 20px 0;">
+          No clubs were selected during registration.
+        </div>
+      `;
+    }
+  }
+
+  // Initialize when page loads
+  document.addEventListener('DOMContentLoaded', initializePage);
+</script>
+
+</body>
+</html>
